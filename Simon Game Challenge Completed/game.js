@@ -2,7 +2,7 @@
 var But_Colors = ["red", "blue", "green", "yellow"];
 
 var Pattern = [];
-var userClickedPattern = [];
+var playerclick = [];
 
 var started = false;
 var level = 0;
@@ -18,18 +18,18 @@ $(document).keypress(function() {
 $(".btn").click(function() {
 
   var userChosenColour = $(this).attr("id");
-  userClickedPattern.push(userChosenColour);
+  playerclick.push(userChosenColour);
 
   playSound(userChosenColour);
   animatePress(userChosenColour);
 
-  checkAnswer(userClickedPattern.length-1);
+  checkAnswer(playerclick.length-1);
 });
 
 function checkAnswer(currentLevel) {
 
-    if (Pattern[currentLevel] === userClickedPattern[currentLevel]) {
-      if (userClickedPattern.length === Pattern.length){
+    if (Pattern[currentLevel] === playerclick[currentLevel]) {
+      if (playerclick.length === Pattern.length){
         setTimeout(function () {
           nextSequence();
         }, 1000);
@@ -49,7 +49,7 @@ function checkAnswer(currentLevel) {
 
 
 function nextSequence() {
-  userClickedPattern = [];
+  playerclick = [];
   level++;
   $("#level-title").text("Level " + level);
   var randomNumber = Math.floor(Math.random() * 4);
